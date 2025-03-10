@@ -231,4 +231,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\config\inputs.cfg" />
+    <None Include="..\..\levels\testLevel.level">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

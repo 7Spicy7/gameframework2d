@@ -1,10 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\config",
     "\\defs",
-    "\\defs\\levels",
     "\\include",
+    "\\levels",
     "\\src"
   ],
+  "SelectedNode": "\\levels\\testLevel.level",
   "PreviewInSolutionExplorer": false
 }

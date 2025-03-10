@@ -37,12 +37,14 @@ int main(int argc, char * argv[])
     gf2d_sprite_init(1024);
     entity_system_init(1024);
     SDL_ShowCursor(SDL_DISABLE);
+
     
     /*demo setup*/
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16,0);
     player = player_new_entity();
     enemy = enemy_new_entity();
-    world = world_test_new();
+    world = world_load("levels/testLevel.level");
+    slog("passed the world");
     slog("press [escape] to quit");
     /*main game loop*/
     while(!done)
@@ -80,7 +82,7 @@ int main(int argc, char * argv[])
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
-    entity_clear_all(NULL);
+    entity_free(player);
     world_free(world);
     slog("---==== END ====---");
     return 0;

@@ -209,6 +209,10 @@
     <ClInclude Include="..\..\include\tileset.h" />
     <ClInclude Include="..\..\include\world.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\config\inputs.cfg" />
+    <None Include="..\..\levels\testLevel.level" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
