@@ -3,6 +3,7 @@
 
 #include "simple_json.h"
 #include "gfc_types.h"
+#include "gfc_shape.h"
 #include "gfc_text.h"
 #include "gfc_vector.h"
 #include "gf2d_sprite.h"
@@ -11,6 +12,7 @@ typedef struct Entity_S
 {
 	Uint8		 _inuse; /**<memory management flag*/
 	GFC_TextLine name; /**<name of the entity for debugging*/
+	GFC_Rect	 bounds; /**<where the sprite is*/
 	Sprite		 *sprite; /**<graphical representation of the entity*/
 	float		 frame; /**<for drawing the sprite*/
 	float        speedMax;
@@ -21,6 +23,7 @@ typedef struct Entity_S
 	void (*update)(struct Entity_S *self); /**<function for decision-doing*/
 	void (*free)(struct Entity_S *self); /**<cleaning up when not in use*/
 	void *data;
+	int team;
 }Entity;
 
 /**
@@ -68,5 +71,7 @@ void entity_system_close();
 void entity_configure_from_file(Entity* self, const char *filename);
 
 void entity_configure(Entity *self, SJson *json);
+
+int entity_collision_check(Entity* self, Entity* other);
 
 #endif

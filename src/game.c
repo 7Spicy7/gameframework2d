@@ -3,10 +3,12 @@
 
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
+#include "camera.h"
 #include "entity.h"
 #include "player.h"
 #include "enemy.h"
 #include "world.h"
+#include "font.h"
 
 int main(int argc, char * argv[])
 {
@@ -36,7 +38,9 @@ int main(int argc, char * argv[])
     gf2d_graphics_set_frame_delay(16);
     gf2d_sprite_init(1024);
     entity_system_init(1024);
+    font_init();
     SDL_ShowCursor(SDL_DISABLE);
+    camera_set_size(gfc_vector2d(1200,720));
 
     
     /*demo setup*/
@@ -44,6 +48,7 @@ int main(int argc, char * argv[])
     player = player_new_entity();
     enemy = enemy_new_entity();
     world = world_load("levels/testLevel.level");
+    world_setup_camera(world);
     slog("passed the world");
     slog("press [escape] to quit");
     /*main game loop*/
@@ -66,6 +71,7 @@ int main(int argc, char * argv[])
 
             entity_system_draw_all();
             
+            font_draw_test("Press ESC to exit\nHow funky!",FS_large, GFC_COLOR_CYAN, gfc_vector2d(10, 10));
             //UI elements last
             gf2d_sprite_draw(
                 mouse,

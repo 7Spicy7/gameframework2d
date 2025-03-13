@@ -1,0 +1,22 @@
+{
+	"collectibles": [
+		{
+			"name": "coin",
+			"displayName": "Coin",
+			"sprite": {
+				"image": "images/coin.png",
+				"frame": 1
+			},
+			"stackable": 1
+		}
+		{
+			"name": "tophat",
+			"displayName": "Top Hat",
+			"sprite": {
+				"image": "images/tophat.png",
+				"frame": 1
+			},
+			"stackable": 0
+		}
+	]
+}

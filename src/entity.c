@@ -1,7 +1,27 @@
 #include "simple_logger.h"
 #include "gfc_config.h"
+#include "gfc_shape.h"
 #include "gf2d_graphics.h"
+#include "camera.h"
 #include "entity.h"
+
+typedef enum
+{
+	ETT_none = 1,
+	ETT_player = 2,
+	ETT_monster = 4,
+	ETT_item = 8,
+	ETT_MAX = 15
+}EntityTeamType;
+
+typedef enum
+{
+	ECL_none = 1,
+	ECL_world = 2,
+	ECL_entity = 4,
+	ECL_item = 8,
+	ECL_ALL = 15
+}EntityCollisionLayer;
 
 typedef struct 
 {
@@ -41,7 +61,7 @@ void entity_configure_from_file(Entity *self, const char *filename)
 
 void entity_configure(Entity *self, SJson *json)
 {
-	GFC_Vector4D bounds = { 0 };
+	GFC_Rect bounds;
 	GFC_Vector2D frameSize = { 0 };
 	Uint32 framesPerLine = 0;
 	const char *sprite = NULL;
@@ -63,6 +83,7 @@ void entity_configure(Entity *self, SJson *json)
 	sprite = sj_object_get_string(json, "name");
 	if (sprite)gfc_line_cpy(self->name, sprite);
 	sj_object_get_vector4d(json,"bounds",&bounds);
+	self->bounds = bounds;
 
 }
 
@@ -171,15 +192,33 @@ void entity_free(Entity *self)
 
 void entity_draw(Entity *self)
 {
+	GFC_Vector2D offset, position;
 	if (!self)return;
 	if (!self->sprite)return;
+	offset = camera_get_offset();
+	gfc_vector2d_add(position,self->position,offset);
 	gf2d_sprite_draw(
 		self->sprite,
-		self->position,
+		position,
 		NULL,
 		NULL,
 		NULL,
 		NULL,
 		NULL,
 		(Uint32)self->frame);
+}
+
+int entity_collision_check(Entity *self, Entity *other)
+{
+	GFC_Rect bounds1, bounds2;
+	if ((!self)||(!other)) return 0;
+	if (!((self->team == ETT_none) || (other->team == ETT_none)))
+	{
+		if (self->team == self->team) return 0;
+	}
+	gfc_rect_copy(bounds1, self->bounds);
+	gfc_rect_copy(bounds2, other->bounds);
+	gfc_vector2d_add(bounds1, bounds1, self->position);
+	gfc_vector2d_add(bounds2, bounds2, self->position);
+	return gfc_rect_overlap(bounds1, bounds2);
 }

@@ -3,6 +3,7 @@
 
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
+#include "gfc_shape.h"
 
 typedef struct
 {
@@ -25,5 +26,11 @@ World *world_new(Uint32 width, Uint32 height);
 void world_free(World *world);
 
 void world_draw(World *world);
+
+void world_setup_camera(World* world);
+
+int world_shape_check(World *world, GFC_Shape shape);
+
+Uint8 world_get_tile_at(World* world, GFC_Vector2D vector);
 
 #endif

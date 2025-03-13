@@ -26,11 +26,15 @@ C:\xampp\htdocs\ajr89\git\gameframework2d\gfc\src\gfc_text.c;C:\xampp\htdocs\ajr
 C:\xampp\htdocs\ajr89\git\gameframework2d\gfc\src\gfc_types.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\gfc_types.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\gfc\src\gfc_vector.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\gfc_vector.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\gfc\src\miniz.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\miniz.obj
+C:\xampp\htdocs\ajr89\git\gameframework2d\src\camera.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\camera.obj
+C:\xampp\htdocs\ajr89\git\gameframework2d\src\collectibles.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\collectibles.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\enemy.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\enemy.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\entity.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\entity.obj
+C:\xampp\htdocs\ajr89\git\gameframework2d\src\font.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\font.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\game.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\game.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\gf2d_draw.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\gf2d_draw.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\gf2d_graphics.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\gf2d_graphics.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\gf2d_sprite.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\gf2d_sprite.obj
+C:\xampp\htdocs\ajr89\git\gameframework2d\src\inventory.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\inventory.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\player.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\player.obj
 C:\xampp\htdocs\ajr89\git\gameframework2d\src\world.c;C:\xampp\htdocs\ajr89\git\gameframework2d\orbo\orbo\x64\Debug\world.obj

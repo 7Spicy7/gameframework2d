@@ -1,6 +1,13 @@
 #include "simple_logger.h"
 #include "gfc_input.h"
+#include "camera.h"
 #include "player.h"
+#include "inventory.h"
+
+typedef struct
+{
+	Inventory inventory;
+}PlayerData;
 
 void player_think(Entity *self);
 void player_update(Entity *self);
@@ -10,6 +17,7 @@ Entity *player_new_entity()
 {
 	gfc_input_init("config/inputs.cfg");
 	Entity *self;
+	PlayerData *data;
 	self = entity_new();
 	if (!self)
 	{
@@ -22,6 +30,12 @@ Entity *player_new_entity()
 	self->think = player_think;
 	self->update = player_update;
 	self->free = player_free;
+	data = gfc_allocate_array(sizeof(PlayerData),1);
+	if (data)
+	{
+		self->data = data;
+		inventory_init(&data->inventory);
+	}
 	return self;
 }
 
@@ -46,9 +60,14 @@ void player_update(Entity *self)
 	self->frame += 0.1;
 	if (self->frame >= 16)self->frame = 0;
 	gfc_vector2d_add(self->position, self->position, self->velocity);
+	camera_center_on(self->position);
 }
 
 void player_free(Entity *self)
 {
-	if (!self)return;
+	PlayerData *data;
+	if ((!self)||(!self->data)) return;
+	data = (PlayerData *)self->data;
+	inventory_cleanup(&data->inventory);
+	free(data);
 }
