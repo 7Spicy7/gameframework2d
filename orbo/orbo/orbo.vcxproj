@@ -209,6 +209,7 @@
     <ClInclude Include="..\..\gfc\simple_logger\include\simple_logger.h" />
     <ClInclude Include="..\..\include\camera.h" />
     <ClInclude Include="..\..\include\collectibles.h" />
+    <ClInclude Include="..\..\include\enemy.h" />
     <ClInclude Include="..\..\include\font.h" />
     <ClInclude Include="..\..\include\gf2d_draw.h" />
     <ClInclude Include="..\..\include\gf2d_graphics.h" />

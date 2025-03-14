@@ -7,6 +7,7 @@
 #include "entity.h"
 #include "player.h"
 #include "enemy.h"
+#include "collectibles.h"
 #include "world.h"
 #include "font.h"
 
@@ -62,8 +63,15 @@ int main(int argc, char * argv[])
         if (mf >= 16.0)mf = 0;
 
         entity_system_think_all();
+       
+        if (entity_collision_check(player, enemy))
+        {
+            enemy->sprite = gf2d_sprite_load_all("images/lilbug_owie.png", 128, 128, 1, 0);
+        } else {
+            enemy->sprite = gf2d_sprite_load_all("images/lilbug.png", 128, 128, 1, 0);
+        }
         entity_system_update_all();
-        
+
         gf2d_graphics_clear_screen();// clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
             //backgrounds drawn first
@@ -71,7 +79,7 @@ int main(int argc, char * argv[])
 
             entity_system_draw_all();
             
-            font_draw_test("Press ESC to exit\nHow funky!",FS_large, GFC_COLOR_CYAN, gfc_vector2d(10, 10));
+            font_draw_test("Press ESC to exit\nHow funky!",FS_large, GFC_COLOR_WHITE, gfc_vector2d(10, 10));
             //UI elements last
             gf2d_sprite_draw(
                 mouse,

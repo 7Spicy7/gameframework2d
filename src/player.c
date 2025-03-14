@@ -15,6 +15,7 @@ void player_free(Entity *self);
 
 Entity *player_new_entity()
 {
+	GFC_Rect bounds;
 	gfc_input_init("config/inputs.cfg");
 	Entity *self;
 	PlayerData *data;
@@ -30,6 +31,9 @@ Entity *player_new_entity()
 	self->think = player_think;
 	self->update = player_update;
 	self->free = player_free;
+	self->team = 2;
+	bounds = gfc_rect(0, 0, 128, 128);
+	self->bounds = bounds;
 	data = gfc_allocate_array(sizeof(PlayerData),1);
 	if (data)
 	{
@@ -60,6 +64,7 @@ void player_update(Entity *self)
 	self->frame += 0.1;
 	if (self->frame >= 16)self->frame = 0;
 	gfc_vector2d_add(self->position, self->position, self->velocity);
+	self->bounds = gfc_rect(self->bounds.x + self->position.x, self->bounds.y + self->position.y, self->bounds.w + self->position.x, self->bounds.h + self->position.y);
 	camera_center_on(self->position);
 }
 

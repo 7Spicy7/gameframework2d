@@ -210,15 +210,13 @@ void entity_draw(Entity *self)
 
 int entity_collision_check(Entity *self, Entity *other)
 {
-	GFC_Rect bounds1, bounds2;
+	GFC_Rect bounds1 = { 0 }, bounds2 = { 0 };
 	if ((!self)||(!other)) return 0;
-	if (!((self->team == ETT_none) || (other->team == ETT_none)))
+	if ((self->team == ETT_none) || (other->team == ETT_none))
 	{
 		if (self->team == self->team) return 0;
 	}
 	gfc_rect_copy(bounds1, self->bounds);
 	gfc_rect_copy(bounds2, other->bounds);
-	gfc_vector2d_add(bounds1, bounds1, self->position);
-	gfc_vector2d_add(bounds2, bounds2, self->position);
 	return gfc_rect_overlap(bounds1, bounds2);
 }
