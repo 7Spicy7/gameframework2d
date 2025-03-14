@@ -19,7 +19,7 @@ Entity* enemy_new_entity()
 	}
 	self->sprite = gf2d_sprite_load_all("images/lilbug.png", 128, 128, 1, 0);
 	self->frame = 0;
-	self->position = gfc_vector2d(728, 0);
+	self->position = gfc_vector2d(728, 64);
 	self->think = enemy_think;
 	self->update = enemy_update;
 	self->team = 4;

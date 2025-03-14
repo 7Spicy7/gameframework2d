@@ -143,7 +143,9 @@ void entity_system_think_all()
 		entity_think(&_entity_system.entity_list[i]);
 	}
 
-}void entity_update(Entity* self)
+}
+
+void entity_update(Entity* self)
 {
 	if (!self)return;
 	if (self->update)

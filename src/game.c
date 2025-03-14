@@ -17,7 +17,7 @@ int main(int argc, char * argv[])
     int done = 0;
     const Uint8 * keys;
     Entity *player;
-    Entity *enemy;
+    Entity *lilbug;
     World *world;
     
     int mx,my;
@@ -47,7 +47,7 @@ int main(int argc, char * argv[])
     /*demo setup*/
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16,0);
     player = player_new_entity();
-    enemy = enemy_new_entity();
+    lilbug = enemy_new_entity();
     world = world_load("levels/testLevel.level");
     world_setup_camera(world);
     slog("passed the world");
@@ -64,11 +64,11 @@ int main(int argc, char * argv[])
 
         entity_system_think_all();
        
-        if (entity_collision_check(player, enemy))
+        if (entity_collision_check(player, lilbug))
         {
-            enemy->sprite = gf2d_sprite_load_all("images/lilbug_owie.png", 128, 128, 1, 0);
+            lilbug->sprite = gf2d_sprite_load_all("images/lilbug_owie.png", 128, 128, 1, 0);
         } else {
-            enemy->sprite = gf2d_sprite_load_all("images/lilbug.png", 128, 128, 1, 0);
+            lilbug->sprite = gf2d_sprite_load_all("images/lilbug.png", 128, 128, 1, 0);
         }
         entity_system_update_all();
 

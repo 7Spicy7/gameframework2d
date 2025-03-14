@@ -1,6 +1,7 @@
 #include "simple_logger.h"
 #include "gfc_input.h"
 #include "camera.h"
+#include "world.h"
 #include "player.h"
 #include "inventory.h"
 
@@ -27,12 +28,12 @@ Entity *player_new_entity()
 	}
 	self->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
 	self->frame = 0;
-	self->position = gfc_vector2d(0,0);
+	self->position = gfc_vector2d(64,64);
 	self->think = player_think;
 	self->update = player_update;
 	self->free = player_free;
 	self->team = 2;
-	bounds = gfc_rect(0, 0, 128, 128);
+	bounds = gfc_rect(self->position.x, self->position.y, self->position.x + 128, self->position.y + 128);
 	self->bounds = bounds;
 	data = gfc_allocate_array(sizeof(PlayerData),1);
 	if (data)
@@ -45,6 +46,7 @@ Entity *player_new_entity()
 
 void player_think(Entity *self)
 {
+	//World* world = world_load("levels/testLevel.level");
 	gfc_input_update();
 	GFC_Vector2D dir = { 0 };
 	Sint32 mx, my;
@@ -56,6 +58,10 @@ void player_think(Entity *self)
 	if (gfc_input_command_down("up"))dir.y = -1;
 	gfc_vector2d_normalize(&dir);
 	gfc_vector2d_scale(self->velocity, dir, 2);
+	//if (world_shape_check(world, gfc_shape_from_rect(self->bounds)))
+	//{
+	//	return;
+	//}
 }
 
 void player_update(Entity *self)
