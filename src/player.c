@@ -68,18 +68,24 @@ void player_update(Entity *self)
 	self->frame += 0.1;
 	if (self->frame >= 16)self->frame = 0;
 	gfc_vector2d_add(newPos, self->position, self->velocity);
-	newBounds = gfc_rect(self->position.x + 31, self->position.y + 82, self->bounds.w, self->bounds.h);
+	newBounds = gfc_rect(newPos.x + 31, newPos.y + 82, self->bounds.w, self->bounds.h);
 	if (world_shape_check(world, gfc_shape_from_rect(newBounds)))
 	{
 		GFC_Vector2D tile = tile_get(world, gfc_shape_from_rect(newBounds));
 		GFC_Rect bounds1, bounds2;
 		bounds1 = self->bounds;
-		bounds2 = gfc_rect(tile.x*world->tileWidth, tile.y*world->tileHeight, world->tileWidth, world->tileHeight);
+		bounds2 = gfc_rect(tile.x*world->tileset->frame_w, tile.y*world->tileset->frame_h, world->tileset->frame_w, world->tileset->frame_h);
 		if ((bounds1.x < bounds2.x + bounds2.w) && self->velocity.x < 0) {
-			self->bounds = gfc_rect(bounds2.x + bounds2.w + 2, bounds1.y, self->bounds.w, self->bounds.h);
+			self->bounds = gfc_rect((bounds2.x + bounds2.w)*tile.x + 10, bounds1.y, self->bounds.w, self->bounds.h);
 			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
-		} else if (bounds1.x + bounds1.w > bounds2.x) {
-			self->bounds = gfc_rect(bounds2.x - (bounds1.w + 10), bounds1.y, self->bounds.w, self->bounds.h);
+		} else if ((bounds1.x + bounds1.w > bounds2.x) && self->velocity.x > 0) {
+			self->bounds = gfc_rect(bounds2.x - (bounds1.x + 3), bounds1.y, self->bounds.w, self->bounds.h);
+			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
+		} else if ((bounds1.y < bounds2.y + bounds2.h) && self->velocity.y < 0) {
+			self->bounds = gfc_rect(bounds1.x, (bounds2.y + bounds2.h)*tile.y + 10, self->bounds.w, self->bounds.h);
+			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
+		} else if ((bounds1.y + bounds1.h > bounds2.y) && self->velocity.y > 0) {
+			self->bounds = gfc_rect(bounds1.x, bounds2.y - (bounds1.y + 3), self->bounds.w, self->bounds.h);
 			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
 		}
 	} else {

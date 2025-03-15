@@ -6,6 +6,9 @@
       "AbsoluteMoniker": "D:0:0:{6EF06F9B-B623-4F1A-99E1-8DA54A26A913}|orbo\\orbo.vcxproj|C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\src\\player.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6EF06F9B-B623-4F1A-99E1-8DA54A26A913}|orbo\\orbo.vcxproj|C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\levels\\testLevel.level||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6EF06F9B-B623-4F1A-99E1-8DA54A26A913}|orbo\\orbo.vcxproj|C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\src\\world.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -22,9 +25,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\include\\entity.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6EF06F9B-B623-4F1A-99E1-8DA54A26A913}|orbo\\orbo.vcxproj|C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\levels\\testLevel.level||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6EF06F9B-B623-4F1A-99E1-8DA54A26A913}|orbo\\orbo.vcxproj|C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\gfc\\include\\gfc_input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
@@ -98,8 +98,7 @@
               "ViewState": "AgIAADYAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-01-27T17:19:54.93Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -112,12 +111,11 @@
               "ViewState": "AgIAAHQAAAAAAAAAAAAiwGMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-08T15:57:29.752Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "player.h",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\include\\player.h",
               "RelativeDocumentMoniker": "..\\include\\player.h",
@@ -126,8 +124,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-05T16:34:16.449Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -137,7 +134,7 @@
               "RelativeDocumentMoniker": "..\\src\\player.c",
               "ToolTip": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\src\\player.c",
               "RelativeToolTip": "..\\src\\player.c",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAFMAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAYwEQAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-02-05T16:28:14.923Z",
               "IsPinned": true,
@@ -145,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "entity.h",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\include\\entity.h",
               "RelativeDocumentMoniker": "..\\include\\entity.h",
@@ -154,12 +151,11 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-05T00:43:02.136Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "entity.c",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\src\\entity.c",
               "RelativeDocumentMoniker": "..\\src\\entity.c",
@@ -168,12 +164,11 @@
               "ViewState": "AgIAAMwAAAAAAAAAAAAAAJIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-02-05T16:24:50.886Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "SDL_scancode.h",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\libs\\SDL2-2.30.11\\include\\SDL_scancode.h",
               "RelativeDocumentMoniker": "..\\..\\libs\\SDL2-2.30.11\\include\\SDL_scancode.h",
@@ -182,12 +177,11 @@
               "ViewState": "AgIAACoAAAAAAAAAAAAiwFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-12T16:32:01.872Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "world.h",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\include\\world.h",
               "RelativeDocumentMoniker": "..\\include\\world.h",
@@ -196,12 +190,11 @@
               "ViewState": "AgIAAAkAAAAAAAAAAAAAACcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-07T22:34:15.795Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "world.c",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\src\\world.c",
               "RelativeDocumentMoniker": "..\\src\\world.c",
@@ -210,8 +203,7 @@
               "ViewState": "AgIAAOAAAAAAAAAAAAAYwPwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-03-07T21:20:32.666Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -261,8 +253,7 @@
               "RelativeToolTip": "..\\src\\enemy.c",
               "ViewState": "AgIAAC0AAAAAAAAAAAAAADMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-03-13T21:46:47.809Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-13T21:46:47.809Z"
             },
             {
               "$type": "Document",
@@ -322,8 +313,7 @@
               "RelativeToolTip": "..\\src\\collectibles.c",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAEsAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-03-10T23:38:51.304Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T23:38:51.304Z"
             },
             {
               "$type": "Document",
@@ -335,8 +325,7 @@
               "RelativeToolTip": "..\\include\\collectibles.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-10T23:38:48.284Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T23:38:48.284Z"
             },
             {
               "$type": "Document",
@@ -348,18 +337,17 @@
               "RelativeToolTip": "..\\defs\\collectibles.def",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001913|",
-              "WhenOpened": "2025-03-10T23:32:02.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T23:32:02.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "testLevel.level",
               "DocumentMoniker": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\levels\\testLevel.level",
               "RelativeDocumentMoniker": "..\\levels\\testLevel.level",
               "ToolTip": "C:\\xampp\\htdocs\\ajr89\\git\\gameframework2d\\levels\\testLevel.level",
               "RelativeToolTip": "..\\levels\\testLevel.level",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-03-10T13:17:43.502Z",
               "EditorCaption": ""
