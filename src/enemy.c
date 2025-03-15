@@ -23,7 +23,7 @@ Entity* enemy_new_entity()
 	self->think = enemy_think;
 	self->update = enemy_update;
 	self->team = 4;
-	bounds = gfc_rect(self->position.x, self->position.y, self->position.x + 128, self->position.y + 128);
+	bounds = gfc_rect(self->position.x, self->position.y, 128, 128);
 	self->bounds = bounds;
 	self->free = enemy_free;
 	return self;
@@ -49,7 +49,7 @@ void enemy_update(Entity* self)
 	self->frame += 0.1;
 	if (self->frame >= 1)self->frame = 0;
 	gfc_vector2d_add(self->position, self->position, self->velocity);
-	self->bounds = gfc_rect(self->bounds.x + self->position.x, self->bounds.y + self->position.y, self->bounds.w + self->position.x, self->bounds.h + self->position.y);
+	self->bounds = gfc_rect(self->position.x, self->position.y, self->bounds.w, self->bounds.h);
 }
 
 void enemy_free(Entity* self)

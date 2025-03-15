@@ -6,6 +6,8 @@
 #include "camera.h"
 #include "world.h"
 
+static World* _activeWorld;
+
 void world_tile_layer_build(World* world) {
 	if (!world) return;
 	if (!world->tileset) return;
@@ -50,6 +52,12 @@ void world_tile_layer_build(World* world) {
 		slog("Failed to convert world tile layer to a texture");
 		return;
 	}
+}
+
+void set_active_world(World* world)
+{
+	slog("active world set (in the function)");
+	_activeWorld = world;
 }
 
 World *world_load(const char *filename)
@@ -123,6 +131,8 @@ World *world_load(const char *filename)
 	world->tileset = gf2d_sprite_load_all(tileset, frame_w, frame_h, frames_per_line, 1);
 	world_tile_layer_build(world);
 	sj_free(json);
+	set_active_world(world);
+	slog("active world set");
 	return world;
 }
 
@@ -171,6 +181,11 @@ World *world_new(Uint32 width, Uint32 height)
 	world->tileHeight = height;
 	world->tileWidth = width;
 	return world;
+}
+
+World * get_active_world()
+{
+	return _activeWorld;
 }
 
 void world_free(World* world)
@@ -225,17 +240,45 @@ int world_shape_check(World* world, GFC_Shape shape)
 	GFC_Shape test;
 	rect.w = world->tileset->frame_w;
 	rect.h = world->tileset->frame_h;
-	for (j = 0; j < world->tileMap; j++)
+	for (j = 0; j < world->tileHeight; j++)
 	{
-		for (i = 0; i < world->tileMap[j]; i++)
+		for (i = 0; i < world->tileWidth; i++)
 		{
 			tileIndex = world_get_tile_at(world, gfc_vector2d(i, j));
 			if (!tileIndex) continue;
 			rect.x = (i * rect.w);
 			rect.y = (j * rect.h);
 			test = gfc_shape_from_rect(rect);
-			if (gfc_shape_overlap(test, shape)) return 1;
+			if (gfc_shape_overlap(test, shape)) {
+				return 1;
+			}
 		}
 	}
 	return 0;
+}
+
+GFC_Vector2D tile_get(World* world, GFC_Shape shape)
+{
+	if ((!world) || (!world->tileset)) return gfc_vector2d(0,0);
+	int i, j;
+	Uint8 tileIndex;
+	GFC_Rect rect = { 0 };
+	GFC_Shape test;
+	rect.w = world->tileset->frame_w;
+	rect.h = world->tileset->frame_h;
+	for (j = 0; j < world->tileHeight; j++)
+	{
+		for (i = 0; i < world->tileWidth; i++)
+		{
+			tileIndex = world_get_tile_at(world, gfc_vector2d(i, j));
+			if (!tileIndex) continue;
+			rect.x = (i * rect.w);
+			rect.y = (j * rect.h);
+			test = gfc_shape_from_rect(rect);
+			if (gfc_shape_overlap(test, shape)) {
+				return gfc_vector2d(i,j);
+			}
+		}
+	}
+	return gfc_vector2d(0,0);
 }

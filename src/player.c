@@ -16,7 +16,6 @@ void player_free(Entity *self);
 
 Entity *player_new_entity()
 {
-	GFC_Rect bounds;
 	gfc_input_init("config/inputs.cfg");
 	Entity *self;
 	PlayerData *data;
@@ -33,8 +32,7 @@ Entity *player_new_entity()
 	self->update = player_update;
 	self->free = player_free;
 	self->team = 2;
-	bounds = gfc_rect(self->position.x, self->position.y, self->position.x + 128, self->position.y + 128);
-	self->bounds = bounds;
+	self->bounds = gfc_rect(self->position.x + 31, self->position.y + 82, 64, 46);
 	data = gfc_allocate_array(sizeof(PlayerData),1);
 	if (data)
 	{
@@ -46,7 +44,6 @@ Entity *player_new_entity()
 
 void player_think(Entity *self)
 {
-	//World* world = world_load("levels/testLevel.level");
 	gfc_input_update();
 	GFC_Vector2D dir = { 0 };
 	Sint32 mx, my;
@@ -57,20 +54,38 @@ void player_think(Entity *self)
 	if (gfc_input_command_down("down"))dir.y = 1;
 	if (gfc_input_command_down("up"))dir.y = -1;
 	gfc_vector2d_normalize(&dir);
-	gfc_vector2d_scale(self->velocity, dir, 2);
-	//if (world_shape_check(world, gfc_shape_from_rect(self->bounds)))
-	//{
-	//	return;
-	//}
+	gfc_vector2d_scale(self->velocity, dir, 2);	
 }
 
 void player_update(Entity *self)
 {
+	World* world = get_active_world();
+	GFC_Vector2D currentPos, newPos;
+	GFC_Rect currentBounds, newBounds;
 	if (!self)return;
+	currentPos = self->position;
+	currentBounds = self->bounds;
 	self->frame += 0.1;
 	if (self->frame >= 16)self->frame = 0;
-	gfc_vector2d_add(self->position, self->position, self->velocity);
-	self->bounds = gfc_rect(self->bounds.x + self->position.x, self->bounds.y + self->position.y, self->bounds.w + self->position.x, self->bounds.h + self->position.y);
+	gfc_vector2d_add(newPos, self->position, self->velocity);
+	newBounds = gfc_rect(self->position.x + 31, self->position.y + 82, self->bounds.w, self->bounds.h);
+	if (world_shape_check(world, gfc_shape_from_rect(newBounds)))
+	{
+		GFC_Vector2D tile = tile_get(world, gfc_shape_from_rect(newBounds));
+		GFC_Rect bounds1, bounds2;
+		bounds1 = self->bounds;
+		bounds2 = gfc_rect(tile.x*world->tileWidth, tile.y*world->tileHeight, world->tileWidth, world->tileHeight);
+		if ((bounds1.x < bounds2.x + bounds2.w) && self->velocity.x < 0) {
+			self->bounds = gfc_rect(bounds2.x + bounds2.w + 2, bounds1.y, self->bounds.w, self->bounds.h);
+			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
+		} else if (bounds1.x + bounds1.w > bounds2.x) {
+			self->bounds = gfc_rect(bounds2.x - (bounds1.w + 10), bounds1.y, self->bounds.w, self->bounds.h);
+			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
+		}
+	} else {
+		self->position = newPos;
+		self->bounds = newBounds;
+	}
 	camera_center_on(self->position);
 }
 

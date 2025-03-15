@@ -18,6 +18,7 @@ int main(int argc, char * argv[])
     const Uint8 * keys;
     Entity *player;
     Entity *lilbug;
+
     World *world;
     
     int mx,my;

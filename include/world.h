@@ -33,4 +33,10 @@ int world_shape_check(World *world, GFC_Shape shape);
 
 Uint8 world_get_tile_at(World* world, GFC_Vector2D vector);
 
+void set_active_world(World* world);
+
+World* get_active_world();
+
+GFC_Vector2D tile_get(World* world, GFC_Shape shape);
+
 #endif
