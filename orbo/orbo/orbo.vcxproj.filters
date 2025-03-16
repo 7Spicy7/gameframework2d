@@ -281,5 +281,20 @@
     <None Include="..\..\defs\lilbug.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\..\defs\geyser.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\rollingstone.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\stalactite.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\stalagmites.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\thepit.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

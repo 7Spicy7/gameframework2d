@@ -222,3 +222,25 @@ int entity_collision_check(Entity *self, Entity *other)
 	gfc_rect_copy(bounds2, other->bounds);
 	return gfc_rect_overlap(bounds1, bounds2);
 }
+
+int entity_closeness_check_x(Entity* self, Entity* other, int maxdist)
+{
+	if ((!self) || (!other)) return 0;
+	if ((self->position.x + maxdist > other->position.x) && (other->position.x > self->position.x - maxdist))
+	{
+		return 1;
+		slog("talk about close!");
+	}
+	return 0;
+}
+
+int entity_closeness_check_y(Entity* self, Entity* other, int maxdist)
+{
+	if ((!self) || (!other)) return 0;
+	if ((self->position.y + maxdist < other->position.y) && (other->position.y < self->position.y - maxdist))
+	{
+		return 1;
+		slog("talk about close!");
+	}
+	return 0;
+}

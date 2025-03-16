@@ -8,5 +8,7 @@
 	"sprite_w":128,
 	"sprite_h":128,
 	"spriteFPL":1,
-	"speed":2
+	"speed": 2,
+	"dx": -1,
+	"dy": 0
 }

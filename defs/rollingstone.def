@@ -1,0 +1,14 @@
+{
+	"name":"rollingstone",
+	"offset_x":0,
+	"offset_y":0,
+	"bounds_w":128,
+	"bounds_h":128,
+	"sprite":"images/rollingstone.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed": 1,
+	"dx": 1,
+	"dy": 0
+}

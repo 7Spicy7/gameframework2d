@@ -1,0 +1,14 @@
+{
+	"name":"geyser",
+	"offset_x":0,
+	"offset_y":0,
+	"bounds_w":128,
+	"bounds_h":256,
+	"sprite":"images/geyser.png",
+	"sprite_w":128,
+	"sprite_h":256,
+	"spriteFPL":1,
+	"speed": 0,
+	"dx": -1,
+	"dy": 0
+}

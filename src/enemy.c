@@ -42,6 +42,7 @@ Entity* enemy_load(const char *filename, GFC_Vector2D position)
 	int frame_w = 0, frame_h = 0;
 	int frames_per_line = 0;
 	int speed = 0;
+	int dx = 0, dy = 0;
 	if (!filename)
 	{
 		slog("no filename given");
@@ -66,6 +67,8 @@ Entity* enemy_load(const char *filename, GFC_Vector2D position)
 	sj_object_get_value_as_int(json, "offset_y", &oy);
 	sj_object_get_value_as_int(json, "bounds_w", &bw);
 	sj_object_get_value_as_int(json, "bounds_h", &bh);
+	sj_object_get_value_as_int(json, "dx", &dx);
+	sj_object_get_value_as_int(json, "dy", &dy);
 	slog("bounds of %s are %i, %i, %i, %i", self->spriteName, ox, oy, bw, bh);
 	self->position = position;
 	self->offset = gfc_vector2d(ox, oy);
@@ -78,8 +81,8 @@ Entity* enemy_load(const char *filename, GFC_Vector2D position)
 	self->speed = speed;
 	slog("self->speed is %i", self->speed);
 	self->free = enemy_free;
-	self->directionx = -1;
-	self->directiony = 0;
+	self->directionx = dx;
+	self->directiony = dy;
 	return self;
 }
 

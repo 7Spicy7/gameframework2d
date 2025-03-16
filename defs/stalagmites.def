@@ -1,0 +1,14 @@
+{
+	"name":"stalagmites",
+	"offset_x":0,
+	"offset_y":86,
+	"bounds_w":128,
+	"bounds_h":42,
+	"sprite":"images/stalagmites.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed": 0,
+	"dx": -1,
+	"dy": 0
+}

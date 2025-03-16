@@ -223,9 +223,14 @@
     <None Include="..\..\defs\beefybug.def" />
     <None Include="..\..\defs\brutebug.def" />
     <None Include="..\..\defs\bubblecrab.def" />
+    <None Include="..\..\defs\geyser.def" />
     <None Include="..\..\defs\lilbug.def" />
+    <None Include="..\..\defs\rollingstone.def" />
+    <None Include="..\..\defs\stalactite.def" />
+    <None Include="..\..\defs\stalagmites.def" />
     <None Include="..\..\defs\swoopybug.def" />
     <None Include="..\..\defs\collectibles.def" />
+    <None Include="..\..\defs\thepit.def" />
     <None Include="..\..\levels\testLevel.level" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

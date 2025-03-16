@@ -22,6 +22,11 @@ int main(int argc, char * argv[])
     Entity* beefybug;
     Entity* brutebug;
     Entity* bubblecrab;
+    Entity* thepit;
+    Entity* geyser;
+    Entity* stalagmites;
+    Entity* stalactite;
+    Entity* rollingstone;
     Entity* tophat;
     World *world;
     
@@ -50,10 +55,15 @@ int main(int argc, char * argv[])
     tophat = collectible_new("tophat");
     tophat->position = gfc_vector2d(500, 200);
     swoopybug = enemy_load("defs/swoopybug.def", gfc_vector2d(728, 64));
-    lilbug = enemy_load("defs/lilbug.def", gfc_vector2d(1200, 258));
-    beefybug = enemy_load("defs/beefybug.def", gfc_vector2d(1200, 256));
-    brutebug = enemy_load("defs/brutebug.def", gfc_vector2d(1200, 260));
+    lilbug = enemy_load("defs/lilbug.def", gfc_vector2d(1264, 258));
+    beefybug = enemy_load("defs/beefybug.def", gfc_vector2d(1264, 256));
+    brutebug = enemy_load("defs/brutebug.def", gfc_vector2d(1264, 260));
     bubblecrab = enemy_load("defs/bubblecrab.def", gfc_vector2d(1200, 611));
+    thepit = enemy_load("defs/thepit.def", gfc_vector2d(32, 768));
+    geyser = enemy_load("defs/geyser.def", gfc_vector2d(352,384));
+    stalagmites = enemy_load("defs/stalagmites.def", gfc_vector2d(640, 576));
+    stalactite = enemy_load("defs/stalactite.def", gfc_vector2d(1600,33));
+    rollingstone = enemy_load("defs/rollingstone.def", gfc_vector2d(1632, 607));
     world = world_load("levels/testLevel.level");
     world_setup_camera(world);
     slog("passed the world");
@@ -99,6 +109,46 @@ int main(int argc, char * argv[])
         }
         else {
             bubblecrab->sprite = gf2d_sprite_load_all("images/bubblecrab.png", 128, 128, 1, 0);
+        }
+        if (entity_collision_check(player, thepit))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
+        }
+        else {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
+        }
+        if (entity_collision_check(player, geyser))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
+            player->velocity.y -= 3;
+        }
+        else {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
+        }
+        if (entity_collision_check(player, stalagmites))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
+        }
+        else {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
+        }
+        if (entity_collision_check(player, stalactite))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
+        }
+        else {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
+        }
+        if (entity_closeness_check_x(stalactite, player, 15)) 
+        {
+            stalactite->directiony = 1;
+        }
+        if (entity_collision_check(player, rollingstone))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
+        }
+        else {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
         }
         entity_system_update_all();
 

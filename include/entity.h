@@ -83,4 +83,8 @@ void entity_configure(Entity *self, SJson *json);
 
 int entity_collision_check(Entity* self, Entity* other);
 
+int entity_closeness_check_x(Entity* self, Entity* other, int maxdist);
+
+int entity_closeness_check_y(Entity* self, Entity* other, int maxdist);
+
 #endif
