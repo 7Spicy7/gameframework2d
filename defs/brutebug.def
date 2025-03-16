@@ -1,0 +1,12 @@
+{
+	"name":"brutebug",
+	"offset_x":17,
+	"offset_y":52,
+	"bounds_w":93,
+	"bounds_h":71,
+	"sprite":"images/brutebug.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed":3
+}

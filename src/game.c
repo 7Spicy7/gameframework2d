@@ -17,14 +17,13 @@ int main(int argc, char * argv[])
     int done = 0;
     const Uint8 * keys;
     Entity *player;
-    Entity *lilbug;
-
+    Entity *swoopybug;
+    Entity* lilbug;
+    Entity* beefybug;
+    Entity* brutebug;
+    Entity* bubblecrab;
+    Entity* tophat;
     World *world;
-    
-    int mx,my;
-    float mf = 0;
-    Sprite *mouse;
-    GFC_Color mouseGFC_Color = gfc_color8(0,200,205,200);
     
     /*program initializtion*/
     init_logger("gf2d.log",0);
@@ -41,14 +40,20 @@ int main(int argc, char * argv[])
     gf2d_sprite_init(1024);
     entity_system_init(1024);
     font_init();
+    collectibles_init("defs/collectibles.def");
     SDL_ShowCursor(SDL_DISABLE);
     camera_set_size(gfc_vector2d(1200,720));
-
+    
     
     /*demo setup*/
-    mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16,0);
     player = player_new_entity();
-    lilbug = enemy_new_entity();
+    tophat = collectible_new("tophat");
+    tophat->position = gfc_vector2d(500, 200);
+    swoopybug = enemy_load("defs/swoopybug.def", gfc_vector2d(728, 64));
+    lilbug = enemy_load("defs/lilbug.def", gfc_vector2d(1200, 258));
+    beefybug = enemy_load("defs/beefybug.def", gfc_vector2d(1200, 256));
+    brutebug = enemy_load("defs/brutebug.def", gfc_vector2d(1200, 260));
+    bubblecrab = enemy_load("defs/bubblecrab.def", gfc_vector2d(1200, 611));
     world = world_load("levels/testLevel.level");
     world_setup_camera(world);
     slog("passed the world");
@@ -59,17 +64,41 @@ int main(int argc, char * argv[])
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
         /*update things here*/
-        SDL_GetMouseState(&mx,&my);
-        mf+=0.1;
-        if (mf >= 16.0)mf = 0;
 
         entity_system_think_all();
        
+        if (entity_collision_check(player, swoopybug))
+        {
+            swoopybug->sprite = gf2d_sprite_load_all("images/swoopybug_owie.png", 128, 128, 1, 0);
+        } else {
+            swoopybug->sprite = gf2d_sprite_load_all("images/swoopybug.png", 128, 128, 1, 0);
+        }
         if (entity_collision_check(player, lilbug))
         {
             lilbug->sprite = gf2d_sprite_load_all("images/lilbug_owie.png", 128, 128, 1, 0);
         } else {
             lilbug->sprite = gf2d_sprite_load_all("images/lilbug.png", 128, 128, 1, 0);
+        }
+        if (entity_collision_check(player, beefybug))
+        {
+            beefybug->sprite = gf2d_sprite_load_all("images/beefybug_owie.png", 128, 128, 1, 0);
+        }
+        else {
+            beefybug->sprite = gf2d_sprite_load_all("images/beefybug.png", 128, 128, 1, 0);
+        }
+        if (entity_collision_check(player, brutebug))
+        {
+            brutebug->sprite = gf2d_sprite_load_all("images/brutebug_owie.png", 128, 128, 1, 0);
+        }
+        else {
+            brutebug->sprite = gf2d_sprite_load_all("images/brutebug.png", 128, 128, 1, 0);
+        }
+        if (entity_collision_check(player, bubblecrab))
+        {
+            bubblecrab->sprite = gf2d_sprite_load_all("images/bubblecrab_owie.png", 128, 128, 1, 0);
+        }
+        else {
+            bubblecrab->sprite = gf2d_sprite_load_all("images/bubblecrab.png", 128, 128, 1, 0);
         }
         entity_system_update_all();
 
@@ -82,15 +111,6 @@ int main(int argc, char * argv[])
             
             font_draw_test("Press ESC to exit\nHow funky!",FS_large, GFC_COLOR_WHITE, gfc_vector2d(10, 10));
             //UI elements last
-            gf2d_sprite_draw(
-                mouse,
-                gfc_vector2d(mx,my),
-                NULL,
-                NULL,
-                NULL,
-                NULL,
-                &mouseGFC_Color,
-                (int)mf);
 
         gf2d_graphics_next_frame();// render current draw frame and skip to the next frame
         
@@ -98,6 +118,8 @@ int main(int argc, char * argv[])
         //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
     entity_free(player);
+    entity_free(swoopybug);
+    entity_free(lilbug);
     world_free(world);
     slog("---==== END ====---");
     return 0;

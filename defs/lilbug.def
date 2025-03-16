@@ -1,0 +1,12 @@
+{
+	"name":"lilbug",
+	"offset_x":20,
+	"offset_y":68,
+	"bounds_w":95,
+	"bounds_h":57,
+	"sprite":"images/lilbug.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed":2
+}

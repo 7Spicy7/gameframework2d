@@ -9,4 +9,6 @@
 */
 Entity* enemy_new_entity();
 
+Entity* enemy_load(const char *filename, GFC_Vector2D position);
+
 #endif

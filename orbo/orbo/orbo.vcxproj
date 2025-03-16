@@ -220,6 +220,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\config\inputs.cfg" />
+    <None Include="..\..\defs\beefybug.def" />
+    <None Include="..\..\defs\brutebug.def" />
+    <None Include="..\..\defs\bubblecrab.def" />
+    <None Include="..\..\defs\lilbug.def" />
+    <None Include="..\..\defs\swoopybug.def" />
     <None Include="..\..\defs\collectibles.def" />
     <None Include="..\..\levels\testLevel.level" />
   </ItemGroup>

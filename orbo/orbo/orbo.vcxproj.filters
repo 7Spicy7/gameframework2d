@@ -266,5 +266,20 @@
     <None Include="..\..\defs\collectibles.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\..\defs\swoopybug.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\beefybug.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\brutebug.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\bubblecrab.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\defs\lilbug.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

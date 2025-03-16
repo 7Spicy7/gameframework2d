@@ -1,0 +1,12 @@
+{
+	"name":"bubblecrab",
+	"offset_x":4,
+	"offset_y":69,
+	"bounds_w":124,
+	"bounds_h":55,
+	"sprite":"images/bubblecrab.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed":2
+}

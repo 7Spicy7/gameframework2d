@@ -1,0 +1,12 @@
+{
+	"name":"beefybug",
+	"offset_x":8,
+	"offset_y":8,
+	"bounds_w":117,
+	"bounds_h":118,
+	"sprite":"images/beefybug.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed":1
+}

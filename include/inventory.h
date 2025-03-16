@@ -25,6 +25,6 @@ void inventory_cleanup(Inventory *inventory);
 
 void inventory_add_item(Inventory *inventory, const char *name);
 
-Collectible *inventory_get_collectible_by_name(Inventory *inventory, const char *name);
+Entity *inventory_get_collectible_by_name(Inventory *inventory, const char *name);
 
 #endif

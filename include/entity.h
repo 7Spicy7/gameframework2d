@@ -12,6 +12,7 @@ typedef struct Entity_S
 {
 	Uint8		 _inuse; /**<memory management flag*/
 	GFC_TextLine name; /**<name of the entity for debugging*/
+	char		*spriteName; /**<for referencing sprites*/
 	GFC_Rect	 bounds; /**<where the sprite is*/
 	Sprite		 *sprite; /**<graphical representation of the entity*/
 	float		 frame; /**<for drawing the sprite*/
@@ -19,11 +20,19 @@ typedef struct Entity_S
 	GFC_Vector2D position; /**<where to draw it*/
 	GFC_Vector2D velocity; /**<how we are moving*/
 	GFC_Vector2D acceleration; /**<how we are moving*/
+	GFC_Vector2D offset;
 	void (*think)(struct Entity_S *self); /**<function for decision-making*/
 	void (*update)(struct Entity_S *self); /**<function for decision-doing*/
 	void (*free)(struct Entity_S *self); /**<cleaning up when not in use*/
 	void *data;
 	int team;
+	// ENEMY SPECIFIC
+	int directionx; /**<for enemies, tells what direction they're going in horizontally. -1 is left, 0 is not moving, 1 is right*/
+	int directiony; /**<like above but for vertical movement. -1 is left, 0 is not moving, 1 is down*/
+	int speed;
+	// COLLECTIBLE SPECIFIC
+	int count; /**<for collectibles, how many can stack (if any)*/
+	SJson * info; /**<holds the information about the collectible*/
 }Entity;
 
 /**

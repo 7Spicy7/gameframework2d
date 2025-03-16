@@ -17,7 +17,7 @@ void inventory_cleanup(Inventory* inventory)
 
 void inventory_add_item(Inventory* inventory, const char* name)
 {
-	Collectible *collectible;
+	Entity *collectible;
 	if ((!inventory) || (!name)) return;
 	collectible = inventory_get_collectible_by_name(inventory, name);
 	if (collectible)
@@ -30,9 +30,9 @@ void inventory_add_item(Inventory* inventory, const char* name)
 	gfc_list_append(inventory->collectibleList, collectible);
 }
 
-Collectible *inventory_get_collectible_by_name(Inventory* inventory, const char* name)
+Entity *inventory_get_collectible_by_name(Inventory* inventory, const char* name)
 {
-	Collectible *collectible;
+	Entity *collectible;
 	int i, c;
 	if (!inventory) return NULL;
 	c = gfc_list_get_count(inventory->collectibleList);

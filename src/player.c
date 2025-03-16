@@ -44,6 +44,7 @@ Entity *player_new_entity()
 
 void player_think(Entity *self)
 {
+	World* world = get_active_world();
 	gfc_input_update();
 	GFC_Vector2D dir = { 0 };
 	Sint32 mx, my;
@@ -53,6 +54,13 @@ void player_think(Entity *self)
 	if (gfc_input_command_down("left"))dir.x = -1;
 	if (gfc_input_command_down("down"))dir.y = 1;
 	if (gfc_input_command_down("up"))dir.y = -1;
+	dir.y += 0.1;
+	if (world_shape_check(world, gfc_shape_from_rect(self->bounds)))
+	{
+		self->bounds.y -= 1;
+		self->position.y -= 1;
+		dir.y -= 0.1;
+	}
 	gfc_vector2d_normalize(&dir);
 	gfc_vector2d_scale(self->velocity, dir, 2);	
 }
@@ -75,16 +83,16 @@ void player_update(Entity *self)
 		GFC_Rect bounds1, bounds2;
 		bounds1 = self->bounds;
 		bounds2 = gfc_rect(tile.x*world->tileset->frame_w, tile.y*world->tileset->frame_h, world->tileset->frame_w, world->tileset->frame_h);
-		if ((bounds1.x < bounds2.x + bounds2.w) && self->velocity.x < 0) {
+		if ((bounds1.x < bounds2.x + bounds2.w) && self->velocity.x < 0 && self->velocity.y == 0) {
 			self->bounds = gfc_rect((bounds2.x + bounds2.w)*tile.x + 10, bounds1.y, self->bounds.w, self->bounds.h);
 			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
-		} else if ((bounds1.x + bounds1.w > bounds2.x) && self->velocity.x > 0) {
+		} else if ((bounds1.x + bounds1.w > bounds2.x) && self->velocity.x > 0 && self->velocity.y == 0) {
 			self->bounds = gfc_rect(bounds2.x - (bounds1.x + 3), bounds1.y, self->bounds.w, self->bounds.h);
 			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
-		} else if ((bounds1.y < bounds2.y + bounds2.h) && self->velocity.y < 0) {
+		} else if ((bounds1.y < bounds2.y + bounds2.h) && self->velocity.y < 0 && self->velocity.x == 0) {
 			self->bounds = gfc_rect(bounds1.x, (bounds2.y + bounds2.h)*tile.y + 10, self->bounds.w, self->bounds.h);
 			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
-		} else if ((bounds1.y + bounds1.h > bounds2.y) && self->velocity.y > 0) {
+		} else if ((bounds1.y + bounds1.h > bounds2.y) && self->velocity.y > 0 && self->velocity.x == 0) {
 			self->bounds = gfc_rect(bounds1.x, bounds2.y - (bounds1.y + 3), self->bounds.w, self->bounds.h);
 			self->position = gfc_vector2d(self->bounds.x - 31, self->bounds.y - 82);
 		}

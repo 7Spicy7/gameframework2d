@@ -1,0 +1,12 @@
+{
+	"name":"swoopybug",
+	"offset_x":25,
+	"offset_y":22,
+	"bounds_w":82,
+	"bounds_h":63,
+	"sprite":"images/swoopybug.png",
+	"sprite_w":128,
+	"sprite_h":128,
+	"spriteFPL":1,
+	"speed":5
+}

@@ -70,20 +70,20 @@ SJson* get_collectible_def_by_name(const char* name)
 	return NULL;
 }
 
-Collectible *collectible_new(const char* name)
+Entity *collectible_new(const char* name)
 {
-	Collectible *collectible;
+	Entity *collectible;
 	SJson *collectibleDef;
 	collectibleDef = get_collectible_def_by_name(name);
 	if (!collectibleDef) return NULL;
-	collectible = gfc_allocate_array(sizeof(Collectible),1);
+	collectible = gfc_allocate_array(sizeof(Entity),1);
 	if (!collectible) return NULL;
 	gfc_line_cpy(collectible->name, name);
 	collectible->count = 1;
 	return collectible;
 }
 
-void collectible_free(Collectible *collectible)
+void collectible_free(Entity *collectible)
 {
 	if (!collectible) return;
 	gf2d_sprite_free(collectible->sprite);
