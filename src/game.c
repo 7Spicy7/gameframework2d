@@ -114,42 +114,31 @@ int main(int argc, char * argv[])
         {
             player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
         }
-        else {
-            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
-        }
-        if (entity_collision_check(player, geyser))
+        else if (entity_collision_check(player, geyser))
         {
             player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
             player->velocity.y -= 3;
         }
-        else {
-            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
+        else if (entity_collision_check(player, stalagmites))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
         }
-        if (entity_collision_check(player, stalagmites))
+        else if (entity_collision_check(player, stalactite))
+        {
+            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
+        }
+        else if (entity_collision_check(player, rollingstone))
         {
             player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
         }
         else {
             player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
-        }
-        if (entity_collision_check(player, stalactite))
-        {
-            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
-        }
-        else {
-            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
-        }
+        }  
         if (entity_closeness_check_x(stalactite, player, 15)) 
         {
             stalactite->directiony = 1;
         }
-        if (entity_collision_check(player, rollingstone))
-        {
-            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop_owie.png", 128, 128, 16, 0);
-        }
-        else {
-            player->sprite = gf2d_sprite_load_all("images/orbobaseidleloop.png", 128, 128, 16, 0);
-        }
+        
         entity_system_update_all();
 
         gf2d_graphics_clear_screen();// clears drawing buffers

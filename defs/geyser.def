@@ -9,6 +9,6 @@
 	"sprite_h":256,
 	"spriteFPL":1,
 	"speed": 0,
-	"dx": -1,
+	"dx": 0,
 	"dy": 0
 }

@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\config",
-    "\\defs",
-    "\\include",
-    "\\levels",
-    "\\src"
+    ""
   ],
-  "SelectedNode": "\\levels\\testLevel.level",
+  "SelectedNode": "\\orbo.sln",
   "PreviewInSolutionExplorer": false
 }
