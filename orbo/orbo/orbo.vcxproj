@@ -232,6 +232,8 @@
     <None Include="..\..\defs\collectibles.def" />
     <None Include="..\..\defs\thepit.def" />
     <None Include="..\..\levels\testLevel.level" />
+    <None Include="Level2.level" />
+    <None Include="titlescreen.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

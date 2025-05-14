@@ -1,0 +1,14 @@
+{
+	"name":"titlescreen",
+	"offset_x":0,
+	"offset_y":0,
+	"bounds_w":1200,
+	"bounds_h":720,
+	"sprite":"images/titlescreen.png",
+	"sprite_w":1200,
+	"sprite_h":720,
+	"spriteFPL":1,
+	"speed": 0,
+	"dx": 0,
+	"dy": 0
+}

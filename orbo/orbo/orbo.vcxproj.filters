@@ -296,5 +296,9 @@
     <None Include="..\..\defs\thepit.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Level2.level" />
+    <None Include="titlescreen.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

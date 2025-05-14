@@ -3,6 +3,8 @@
 
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
+#include "gfc_audio.h"
+#include "gfc_input.h"
 #include "camera.h"
 #include "entity.h"
 #include "player.h"
@@ -13,8 +15,12 @@
 
 int main(int argc, char * argv[])
 {
+    
+
     /*variable declarations*/
     int done = 0;
+    int spaceTimer = 0;
+    int startmenu = 1;
     const Uint8 * keys;
     Entity *player;
     Entity *swoopybug;
@@ -27,10 +33,15 @@ int main(int argc, char * argv[])
     Entity* stalagmites;
     Entity* stalactite;
     Entity* rollingstone;
+    Entity* titlescreen;
     Entity* tophat;
     World *world;
+    GFC_Sound *bgm;
+    GFC_Sound *sfx1;
     
     /*program initializtion*/
+    gfc_input_init("config/inputs.cfg");
+    gfc_audio_init(100, 64, 4, 1, 1, 1);
     init_logger("gf2d.log",0);
     slog("---==== BEGIN ====---");
     gf2d_graphics_initialize(
@@ -64,11 +75,16 @@ int main(int argc, char * argv[])
     stalagmites = enemy_load("defs/stalagmites.def", gfc_vector2d(640, 576));
     stalactite = enemy_load("defs/stalactite.def", gfc_vector2d(1600,33));
     rollingstone = enemy_load("defs/rollingstone.def", gfc_vector2d(1632, 607));
+    titlescreen = enemy_load("defs/titlescreen.def", gfc_vector2d(0, 0));
     world = world_load("levels/testLevel.level");
     world_setup_camera(world);
+    bgm = gfc_sound_load("music/wide-flower-fields-atmospheric-ambient-332274.mp3", 0.3, 0);
+    sfx1 = gfc_sound_load("music/metallic-clang-100473.mp3", 0.3, 1);
     slog("passed the world");
     slog("press [escape] to quit");
     /*main game loop*/
+    gfc_sound_play(bgm, 2, 0.3, -1, -1);
+
     while(!done)
     {
         SDL_PumpEvents();   // update SDL's internal event structures
@@ -80,18 +96,21 @@ int main(int argc, char * argv[])
         if (entity_collision_check(player, swoopybug))
         {
             swoopybug->sprite = gf2d_sprite_load_all("images/swoopybug_owie.png", 128, 128, 1, 0);
+            gfc_sound_play(sfx1, 0, 0.5, -1, -1);
         } else {
             swoopybug->sprite = gf2d_sprite_load_all("images/swoopybug.png", 128, 128, 1, 0);
         }
         if (entity_collision_check(player, lilbug))
         {
             lilbug->sprite = gf2d_sprite_load_all("images/lilbug_owie.png", 128, 128, 1, 0);
+            gfc_sound_play(sfx1, 0, 0.5, -1, -1);
         } else {
             lilbug->sprite = gf2d_sprite_load_all("images/lilbug.png", 128, 128, 1, 0);
         }
         if (entity_collision_check(player, beefybug))
         {
             beefybug->sprite = gf2d_sprite_load_all("images/beefybug_owie.png", 128, 128, 1, 0);
+            gfc_sound_play(sfx1, 0, 0.5, -1, -1);
         }
         else {
             beefybug->sprite = gf2d_sprite_load_all("images/beefybug.png", 128, 128, 1, 0);
@@ -99,6 +118,7 @@ int main(int argc, char * argv[])
         if (entity_collision_check(player, brutebug))
         {
             brutebug->sprite = gf2d_sprite_load_all("images/brutebug_owie.png", 128, 128, 1, 0);
+            gfc_sound_play(sfx1, 0, 0.5, -1, -1);
         }
         else {
             brutebug->sprite = gf2d_sprite_load_all("images/brutebug.png", 128, 128, 1, 0);
@@ -106,6 +126,7 @@ int main(int argc, char * argv[])
         if (entity_collision_check(player, bubblecrab))
         {
             bubblecrab->sprite = gf2d_sprite_load_all("images/bubblecrab_owie.png", 128, 128, 1, 0);
+            gfc_sound_play(sfx1, 0, 0.5, -1, -1);
         }
         else {
             bubblecrab->sprite = gf2d_sprite_load_all("images/bubblecrab.png", 128, 128, 1, 0);
@@ -138,7 +159,40 @@ int main(int argc, char * argv[])
         {
             stalactite->directiony = 1;
         }
-        
+        if (startmenu == 1)
+        {
+            titlescreen->position = gfc_vector2d(0, 0);
+        } else {
+            titlescreen->position = gfc_vector2d(0, 1200);
+        }
+        if (gfc_input_command_down("startmenu") && startmenu == 1 && spaceTimer <= 0) {
+            startmenu = 0;
+            spaceTimer = 30;
+        }
+        else if (gfc_input_command_down("startmenu") && startmenu == 0 && spaceTimer <= 0) {
+            startmenu = 1;
+            spaceTimer = 30;
+        }
+        if (spaceTimer > 0) {
+            spaceTimer--;
+        }
+        if (startmenu == 1) {
+            player->position = gfc_vector2d(64, 64);
+            swoopybug->position = gfc_vector2d(728, 64);
+            swoopybug->directionx = -1;
+            lilbug->position = gfc_vector2d(1264, 258);
+            lilbug->directionx = 1;
+            beefybug->position = gfc_vector2d(1264, 256);
+            beefybug->directionx = 1;
+            brutebug->position = gfc_vector2d(1264, 260);
+            brutebug->directionx = 1;
+            bubblecrab->position = gfc_vector2d(1200, 611);
+            bubblecrab->directionx = -1;
+            stalactite->position = gfc_vector2d(1600, 33);
+            stalactite->directiony = 0;
+            rollingstone->position = gfc_vector2d(1632, 607);
+            rollingstone->directionx = 1;
+        }
         entity_system_update_all();
 
         gf2d_graphics_clear_screen();// clears drawing buffers
@@ -148,13 +202,16 @@ int main(int argc, char * argv[])
 
             entity_system_draw_all();
             
-            font_draw_test("Press ESC to exit\nHow funky!",FS_large, GFC_COLOR_WHITE, gfc_vector2d(10, 10));
+            if (startmenu == 0) font_draw_test("Press Space to return to the main menu.\nHow funky!",FS_large, GFC_COLOR_WHITE, gfc_vector2d(10, 10));
             //UI elements last
 
         gf2d_graphics_next_frame();// render current draw frame and skip to the next frame
         
-        if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
-        //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
+        if (keys[SDL_SCANCODE_ESCAPE] && startmenu == 1)
+        {
+            done = 1; // exit condition
+        }
+            //slog("Rendering at %f FPS",gf2d_graphics_get_frames_per_second());
     }
     entity_free(player);
     entity_free(swoopybug);
