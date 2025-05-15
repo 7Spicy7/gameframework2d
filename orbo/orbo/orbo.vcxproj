@@ -233,6 +233,7 @@
     <None Include="..\..\defs\thepit.def" />
     <None Include="..\..\defs\transition.def" />
     <None Include="..\..\levels\Level2.level" />
+    <None Include="..\..\levels\minimap1.level" />
     <None Include="..\..\levels\testLevel.level" />
     <None Include="titlescreen.def" />
   </ItemGroup>

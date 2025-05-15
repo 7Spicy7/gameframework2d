@@ -303,5 +303,6 @@
     <None Include="..\..\defs\transition.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\..\levels\minimap1.level" />
   </ItemGroup>
 </Project>
