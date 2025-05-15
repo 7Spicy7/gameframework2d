@@ -15,11 +15,11 @@
 
 int main(int argc, char * argv[])
 {
-    
-
     /*variable declarations*/
     int done = 0;
     int spaceTimer = 0;
+    int lev = 0;
+    int levswitch = 0;
     int startmenu = 1;
     const Uint8 * keys;
     Entity *player;
@@ -33,6 +33,7 @@ int main(int argc, char * argv[])
     Entity* stalagmites;
     Entity* stalactite;
     Entity* rollingstone;
+    Entity* transition;
     Entity* titlescreen;
     Entity* tophat;
     World *world;
@@ -60,11 +61,11 @@ int main(int argc, char * argv[])
     SDL_ShowCursor(SDL_DISABLE);
     camera_set_size(gfc_vector2d(1200,720));
     
-    
     /*demo setup*/
     player = player_new_entity();
     tophat = collectible_new("tophat");
     tophat->position = gfc_vector2d(500, 200);
+    transition = enemy_load("defs/transition.def", gfc_vector2d(2016, 608));
     swoopybug = enemy_load("defs/swoopybug.def", gfc_vector2d(728, 64));
     lilbug = enemy_load("defs/lilbug.def", gfc_vector2d(1264, 258));
     beefybug = enemy_load("defs/beefybug.def", gfc_vector2d(1264, 256));
@@ -159,6 +160,45 @@ int main(int argc, char * argv[])
         {
             stalactite->directiony = 1;
         }
+
+        if (entity_collision_check(player, transition))
+        {
+            if (lev == 0 && levswitch <= 0) {
+                slog("lev is %i", lev);
+                slog("we iffin' (version 1)");
+                lev = 1;
+                world = world_load("levels/Level2.level");
+                levswitch = 100;
+                player->position = gfc_vector2d(64, 64);
+                transition->position = gfc_vector2d(-64, 64);
+                geyser->position = gfc_vector2d(352, 480);
+            }
+            else if (lev == 1 && levswitch <= 0) {
+                slog("lev is %i", lev);
+                slog("we iffin' (version 2)");
+                lev = 0;
+                world = world_load("levels/testLevel.level");
+                levswitch = 100;
+                player->position = gfc_vector2d(1888, 608);
+                transition->position = gfc_vector2d(2016, 608);
+                swoopybug->position = gfc_vector2d(728, 64);
+                swoopybug->directionx = -1;
+                lilbug->position = gfc_vector2d(1264, 258);
+                lilbug->directionx = 1;
+                beefybug->position = gfc_vector2d(1264, 256);
+                beefybug->directionx = 1;
+                brutebug->position = gfc_vector2d(1264, 260);
+                brutebug->directionx = 1;
+                bubblecrab->position = gfc_vector2d(1200, 611);
+                bubblecrab->directionx = -1;
+                stalactite->position = gfc_vector2d(1600, 33);
+                stalactite->directiony = 0;
+                rollingstone->position = gfc_vector2d(1632, 607);
+                rollingstone->directionx = 1;
+                geyser->position = gfc_vector2d(352, 384);
+            }
+        }
+
         if (startmenu == 1)
         {
             titlescreen->position = gfc_vector2d(0, 0);
@@ -172,10 +212,17 @@ int main(int argc, char * argv[])
         else if (gfc_input_command_down("startmenu") && startmenu == 0 && spaceTimer <= 0) {
             startmenu = 1;
             spaceTimer = 30;
+            world = world_load("levels/testLevel.level");
+            lev = 0;
         }
+
         if (spaceTimer > 0) {
             spaceTimer--;
         }
+        if (levswitch > 0) {
+            levswitch--;
+        }
+
         if (startmenu == 1) {
             player->position = gfc_vector2d(64, 64);
             swoopybug->position = gfc_vector2d(728, 64);
@@ -192,7 +239,10 @@ int main(int argc, char * argv[])
             stalactite->directiony = 0;
             rollingstone->position = gfc_vector2d(1632, 607);
             rollingstone->directionx = 1;
+            transition->position = gfc_vector2d(2016, 608);
+            geyser->position = gfc_vector2d(352, 384);
         }
+
         entity_system_update_all();
 
         gf2d_graphics_clear_screen();// clears drawing buffers
@@ -202,7 +252,7 @@ int main(int argc, char * argv[])
 
             entity_system_draw_all();
             
-            if (startmenu == 0) font_draw_test("Press Space to return to the main menu.\nHow funky!",FS_large, GFC_COLOR_WHITE, gfc_vector2d(10, 10));
+            if (startmenu == 0) font_draw_test("Press Space to restart and return to the main menu.",FS_large, GFC_COLOR_WHITE, gfc_vector2d(10, 10));
             //UI elements last
 
         gf2d_graphics_next_frame();// render current draw frame and skip to the next frame
